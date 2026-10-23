@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Beeper öffnen</title>
+<style>
+:root{--bg:#f6f7f9;--fg:#17202b;--muted:#5b6776;--acc:#1d4ed8;--acc-fg:#fff}
+@media (prefers-color-scheme: dark){:root{--bg:#0f141a;--fg:#e6ebf1;--muted:#97a3b2;--acc:#7aa2ff;--acc-fg:#0b1220}}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--bg);color:var(--fg);font:17px/1.5 -apple-system,system-ui,sans-serif;text-align:center}
+main{padding:24px 16px;display:grid;gap:14px;max-width:360px}
+a.btn{display:inline-block;background:var(--acc);color:var(--acc-fg);text-decoration:none;font-weight:600;padding:12px 20px;border-radius:10px}
+p{margin:0;color:var(--muted);font-size:15px}
+</style>
+</head>
+<body>
+<main>
+<p>Beeper wird geöffnet …</p>
+<a class="btn" href="beeper://" id="go">Beeper öffnen</a>
+<p>Falls nichts passiert, den Knopf antippen.</p>
+</main>
+<script>
+// Leitet sofort auf Beepers App-Schema weiter. Keine Daten, kein Tracking.
+setTimeout(function(){ location.href = "beeper://"; }, 50);
+</script>
+</body>
+</html>
