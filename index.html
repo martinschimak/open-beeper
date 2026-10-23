@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Beeper öffnen</title>
+<title>App öffnen</title>
 <style>
 :root{--bg:#f6f7f9;--fg:#17202b;--muted:#5b6776;--acc:#1d4ed8;--acc-fg:#fff}
 @media (prefers-color-scheme: dark){:root{--bg:#0f141a;--fg:#e6ebf1;--muted:#97a3b2;--acc:#7aa2ff;--acc-fg:#0b1220}}
@@ -16,13 +16,19 @@ p{margin:0;color:var(--muted);font-size:15px}
 </head>
 <body>
 <main>
-<p>Beeper wird geöffnet …</p>
-<a class="btn" href="beeper://" id="go">Beeper öffnen</a>
+<p id="msg">Wird geöffnet …</p>
+<a class="btn" href="beeper://" id="go">Öffnen</a>
 <p>Falls nichts passiert, den Knopf antippen.</p>
 </main>
 <script>
-// Leitet sofort auf Beepers App-Schema weiter. Keine Daten, kein Tracking.
-setTimeout(function(){ location.href = "beeper://"; }, 50);
+// Leitet auf ein App-Schema weiter. Ohne Parameter: beeper://. Mit ?u=<url>: nur message: (Apple Mail) und beeper: erlaubt.
+// Keine Daten auf dieser Seite, kein Tracking.
+(function(){
+  var u = new URLSearchParams(location.search).get("u") || "beeper://";
+  if (!/^(message|beeper):/i.test(u)) u = "beeper://";
+  document.getElementById("go").href = u;
+  setTimeout(function(){ location.href = u; }, 50);
+})();
 </script>
 </body>
 </html>
